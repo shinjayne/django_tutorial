@@ -2,10 +2,15 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import os
 
+from .models import Post
+
 # Create your views here.
 
 def post_list(request) :
-    return render(request, 'blog/post_list.html')
+    qs = Post.objects.all()
+    return render(request, 'blog/post_list.html', {
+        'post_list' : qs,
+    })
 
 def download(request) :
     filepath = '/Users/shinjayne/Downloads/재경 연락처.xlsx'
